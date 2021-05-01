@@ -12,9 +12,10 @@ const checkItem = {
     this.label.hidden = true;
     this.label.addEventListener("click", this.labelClickEvent.bind(this));
     this.input = document.createElement("input");
-    this.input.addEventListener("change", this.inputChangeEvent.bind(this));
+    this.input.addEventListener("blur", this.inputBlurEvent.bind(this));
     this.itemLabel.appendChild(this.label);
     this.itemLabel.appendChild(this.input);
+    this.input.focus();
   },
   setLabel: function (label) {
     this.label.innerText = label;
@@ -35,12 +36,15 @@ const checkItem = {
   labelClickEvent: function (e) {
     this.label.hidden = true;
     this.input.hidden = false;
+    this.input.focus();
   },
-  inputChangeEvent: function (e) {
+  inputBlurEvent: function (e) {
     if (e.target.value) {
       this.input.hidden = true;
       this.setLabel(e.target.value);
       this.label.hidden = false;
+    } else {
+      this.destructor();
     }
   },
   destructor: function () {
