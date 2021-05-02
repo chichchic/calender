@@ -10,14 +10,14 @@ const TodoList = {
     this.content.appendChild(this.addButton);
     this.list = list;
     this.list.forEach((title) => {
-      const item = Object.create(CheckItem);
-      item.constructor(this.content, title);
+      const checkItem = Object.create(CheckItem);
+      this.content.appendChild(checkItem.constructor(title));
     });
   },
-  addItem: function (title) {
-    const item = Object.create(CheckItem);
-    item.append(this.content, title);
-    this.list.push(item);
+  addItem: function () {
+    const checkItem = Object.create(CheckItem);
+    this.content.appendChild(checkItem.constructor());
+    checkItem.focus();
   },
 };
 

@@ -1,7 +1,6 @@
 const checkItem = {
-  _create: function (target) {
+  _create: function () {
     this.item = document.createElement("div");
-    target.appendChild(this.item);
     this.checkbox = document.createElement("input");
     this.checkbox.type = "checkbox";
     this.item.appendChild(this.checkbox);
@@ -15,14 +14,17 @@ const checkItem = {
     this.label.addEventListener("click", this.labelClickEvent.bind(this));
     this.input.addEventListener("blur", this.inputBlurEvent.bind(this));
   },
-  constructor: function (target, label) {
-    this._create(target);
-    this.input.hidden = true;
-    this.setLabel(label);
+  constructor: function (label) {
+    this._create();
+    if (label === undefined) {
+      this.label.hidden = true;
+    } else {
+      this.input.hidden = true;
+      this.setLabel(label);
+    }
+    return this.item;
   },
-  append: function (target) {
-    this._create(target);
-    this.label.hidden = true;
+  focus: function () {
     this.input.focus();
   },
   setLabel: function (label) {
