@@ -1,6 +1,6 @@
 const checkItem = {
   _create: function () {
-    this.item = document.createElement("div");
+    this.item = document.createElement("li");
     this.checkbox = document.createElement("input");
     this.checkbox.type = "checkbox";
     this.item.appendChild(this.checkbox);
@@ -34,6 +34,14 @@ const checkItem = {
     if (inputBlurEvent) {
       this.input.addEventListener("blur", inputBlurEvent.bind(this));
     }
+    this.item.classList.add("draggable");
+    this.item.draggable = true;
+    this.item.addEventListener("dragstart", () => {
+      this.item.classList.add("dragging");
+    });
+    this.item.addEventListener("dragend", () => {
+      this.item.classList.remove("dragging");
+    });
     if (label === null) {
       this.label.hidden = true;
     } else {

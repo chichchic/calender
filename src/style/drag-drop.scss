@@ -1,0 +1,8 @@
+.moves {
+  transform: translate(10px, 20px);
+  transition-duration: 1s;
+}
+
+.dragging {
+  opacity: 0.5;
+}

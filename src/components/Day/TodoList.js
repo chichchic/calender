@@ -1,28 +1,42 @@
 import CheckItem from "./CheckItem";
 
 const TodoList = {
-  constructor: function (target, list = []) {
-    this.content = document.createElement("div");
+  constructor: function ({ className, title, target, listArray = [] }) {
+    this.content = document.createElement("article");
+    this.content.className = className;
     target.appendChild(this.content);
+    this.title = document.createElement("h1");
+    this.title.textContent = title;
+    this.content.appendChild(this.title);
     this.addButton = document.createElement("button");
+    this.addButton.className = "add-button";
     this.addButton.innerText = "+";
     this.addButton.addEventListener("click", () => {
       this.addItem();
     });
     this.content.appendChild(this.addButton);
-    this.content.appendChild(document.createElement("hr"));
-    this.list = list;
-    this.list.forEach((label) => {
+    this.list = document.createElement("ul");
+    this.content.appendChild(this.list);
+    this.listArray = listArray;
+    this.listArray.forEach((label) => {
       this.addItem(label);
     });
-    if (this.list.length === 0) {
+    if (this.listArray.length === 0) {
       this.addItem();
     }
+    this.list.addEventListener("dragover", (e) => {
+      e.preventDefault();
+      const dragging = document.querySelector(".dragging");
+      const draggableElement = [
+        ...this.list.querySelectorAll(".draggable:not(.dragging)"),
+      ];
+      const target = e.target === this.list ? null : e.target;
+      this.list.insertBefore(dragging, target);
+    });
   },
   addItem: function (label = null) {
     const checkItem = Object.create(CheckItem);
-    const hr = document.createElement("hr");
-    this.content.appendChild(
+    this.list.appendChild(
       checkItem.constructor({
         label,
         checkboxInputEvent: function (e) {
@@ -39,12 +53,10 @@ const TodoList = {
             this.label.hidden = false;
           } else {
             this.destructor();
-            hr.remove();
           }
         },
       })
     );
-    this.content.appendChild(hr);
     if (label === null) {
       checkItem.focus();
     }
