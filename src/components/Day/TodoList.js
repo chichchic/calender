@@ -10,6 +10,7 @@ const TodoList = {
       this.addItem();
     });
     this.content.appendChild(this.addButton);
+    this.content.appendChild(document.createElement("hr"));
     this.list = list;
     this.list.forEach((label) => {
       this.addItem(label);
@@ -17,6 +18,7 @@ const TodoList = {
   },
   addItem: function (label = null) {
     const checkItem = Object.create(CheckItem);
+    const hr = document.createElement("hr");
     this.content.appendChild(
       checkItem.constructor({
         label,
@@ -34,10 +36,12 @@ const TodoList = {
             this.label.hidden = false;
           } else {
             this.destructor();
+            hr.remove();
           }
         },
       })
     );
+    this.content.appendChild(hr);
     if (label === null) {
       checkItem.focus();
     }
