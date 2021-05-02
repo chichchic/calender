@@ -1,20 +1,28 @@
 const checkItem = {
-  constructor: function (target) {
+  _create: function (target) {
     this.item = document.createElement("div");
     target.appendChild(this.item);
     this.checkbox = document.createElement("input");
     this.checkbox.type = "checkbox";
-    this.checkbox.addEventListener("input", this.checkboxInputEvent.bind(this));
     this.item.appendChild(this.checkbox);
     this.itemLabel = document.createElement("span");
     this.item.appendChild(this.itemLabel);
     this.label = document.createElement("label");
-    this.label.hidden = true;
-    this.label.addEventListener("click", this.labelClickEvent.bind(this));
     this.input = document.createElement("input");
-    this.input.addEventListener("blur", this.inputBlurEvent.bind(this));
     this.itemLabel.appendChild(this.label);
     this.itemLabel.appendChild(this.input);
+    this.checkbox.addEventListener("input", this.checkboxInputEvent.bind(this));
+    this.label.addEventListener("click", this.labelClickEvent.bind(this));
+    this.input.addEventListener("blur", this.inputBlurEvent.bind(this));
+  },
+  constructor: function (target, label) {
+    this._create(target);
+    this.input.hidden = true;
+    this.setLabel(label);
+  },
+  append: function (target) {
+    this._create(target);
+    this.label.hidden = true;
     this.input.focus();
   },
   setLabel: function (label) {
