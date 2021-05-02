@@ -6,18 +6,41 @@ const TodoList = {
     target.appendChild(this.content);
     this.addButton = document.createElement("button");
     this.addButton.innerText = "+";
-    this.addButton.addEventListener("click", this.addItem.bind(this));
+    this.addButton.addEventListener("click", () => {
+      this.addItem();
+    });
     this.content.appendChild(this.addButton);
     this.list = list;
-    this.list.forEach((title) => {
-      const checkItem = Object.create(CheckItem);
-      this.content.appendChild(checkItem.constructor(title));
+    this.list.forEach((label) => {
+      this.addItem(label);
     });
   },
-  addItem: function () {
+  addItem: function (label = null) {
     const checkItem = Object.create(CheckItem);
-    this.content.appendChild(checkItem.constructor());
-    checkItem.focus();
+    this.content.appendChild(
+      checkItem.constructor({
+        label,
+        checkboxInputEvent: function (e) {
+          if (e.target.checked) {
+            this.label.style.textDecoration = "line-through";
+          } else {
+            this.label.style.textDecoration = "none";
+          }
+        },
+        inputBlurEvent: function (e) {
+          if (e.target.value) {
+            this.input.hidden = true;
+            this.setLabel(e.target.value);
+            this.label.hidden = false;
+          } else {
+            this.destructor();
+          }
+        },
+      })
+    );
+    if (label === null) {
+      checkItem.focus();
+    }
   },
 };
 

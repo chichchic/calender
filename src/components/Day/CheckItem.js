@@ -8,19 +8,38 @@ const checkItem = {
     this.item.appendChild(this.itemLabel);
     this.label = document.createElement("label");
     this.input = document.createElement("input");
+    this.input.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        this.input.blur();
+      }
+    });
     this.itemLabel.appendChild(this.label);
     this.itemLabel.appendChild(this.input);
-    this.checkbox.addEventListener("input", this.checkboxInputEvent.bind(this));
-    this.label.addEventListener("click", this.labelClickEvent.bind(this));
-    this.input.addEventListener("blur", this.inputBlurEvent.bind(this));
+    this.label.addEventListener("click", (e) => {
+      this.label.hidden = true;
+      this.input.hidden = false;
+      this.input.focus();
+    });
   },
-  constructor: function (label) {
+  constructor: function ({
+    label,
+    checkboxInputEvent,
+    labelClickEvent,
+    inputBlurEvent,
+  }) {
     this._create();
-    if (label === undefined) {
+    if (checkboxInputEvent) {
+      this.checkbox.addEventListener("input", checkboxInputEvent.bind(this));
+    }
+    if (inputBlurEvent) {
+      this.input.addEventListener("blur", inputBlurEvent.bind(this));
+    }
+    if (label === null) {
       this.label.hidden = true;
     } else {
       this.input.hidden = true;
       this.setLabel(label);
+      this.input.value = label;
     }
     return this.item;
   },
@@ -29,33 +48,6 @@ const checkItem = {
   },
   setLabel: function (label) {
     this.label.innerText = label;
-  },
-  setLabelStrikethrough: function (status) {
-    if (status) {
-      this.label.style.textDecoration = "line-through";
-    } else {
-      this.label.style.textDecoration = "none";
-    }
-  },
-  getChecked: function () {
-    return this.checkbox.checked;
-  },
-  checkboxInputEvent: function (e) {
-    this.setLabelStrikethrough(e.target.checked);
-  },
-  labelClickEvent: function (e) {
-    this.label.hidden = true;
-    this.input.hidden = false;
-    this.input.focus();
-  },
-  inputBlurEvent: function (e) {
-    if (e.target.value) {
-      this.input.hidden = true;
-      this.setLabel(e.target.value);
-      this.label.hidden = false;
-    } else {
-      this.destructor();
-    }
   },
   destructor: function () {
     this.item.remove();
