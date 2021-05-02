@@ -15,6 +15,9 @@ const TodoList = {
     this.list.forEach((label) => {
       this.addItem(label);
     });
+    if (this.list.length === 0) {
+      this.addItem();
+    }
   },
   addItem: function (label = null) {
     const checkItem = Object.create(CheckItem);
