@@ -1,4 +1,5 @@
 import Day from "./page/Day";
+import Month from "./page/Month";
 
 import "./style/index.scss";
 
@@ -19,6 +20,7 @@ nav.innerHTML = `
   </div>
 <input class="search-box" placeholder="search"/>
 `;
-layout.appendChild(
-  Object.create(Day).constructor({ date: new Date().toDateString() })
-);
+// layout.appendChild(
+//   Object.create(Day).constructor({ date: new Date().toDateString() })
+// );
+layout.appendChild(Object.create(Month).constructor());
