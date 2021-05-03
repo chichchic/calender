@@ -1,4 +1,4 @@
-import TodoList from "./components/Day/TodoList";
+import Day from "./page/Day";
 
 import "./style/index.scss";
 
@@ -19,10 +19,6 @@ nav.innerHTML = `
   </div>
 <input class="search-box" placeholder="search"/>
 `;
-const todoList = Object.create(TodoList);
-todoList.constructor({
-  className: "todo-list",
-  title: "Today",
-  target: layout,
-  listArray: [1, 2, 3, 4, 5],
-});
+layout.appendChild(
+  Object.create(Day).constructor({ date: new Date().toDateString() })
+);

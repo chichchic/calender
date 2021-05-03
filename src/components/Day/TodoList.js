@@ -1,10 +1,9 @@
 import CheckItem from "./CheckItem";
 
 const TodoList = {
-  constructor: function ({ className, title, target, listArray = [] }) {
+  constructor: function ({ className, title, listArray = [] }) {
     this.content = document.createElement("article");
     this.content.className = className;
-    target.appendChild(this.content);
     this.title = document.createElement("h1");
     this.title.textContent = title;
     this.content.appendChild(this.title);
@@ -33,6 +32,7 @@ const TodoList = {
       const target = e.target === this.list ? null : e.target;
       this.list.insertBefore(dragging, target);
     });
+    return this.content;
   },
   addItem: function (label = null) {
     const checkItem = Object.create(CheckItem);
