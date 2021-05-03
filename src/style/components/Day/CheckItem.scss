@@ -1,6 +1,12 @@
 .check-item {
   padding: 10px;
-}
-.checkbox {
-  margin-right: 10px;
+  & .checkbox {
+    margin-right: 10px;
+  }
+  & .checked-item {
+    text-decoration: line-through;
+  }
+  & input {
+    border: none;
+  }
 }

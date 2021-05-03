@@ -39,22 +39,6 @@ const TodoList = {
     this.list.appendChild(
       checkItem.constructor({
         label,
-        checkboxInputEvent: function (e) {
-          if (e.target.checked) {
-            this.label.style.textDecoration = "line-through";
-          } else {
-            this.label.style.textDecoration = "none";
-          }
-        },
-        inputBlurEvent: function (e) {
-          if (e.target.value) {
-            this.input.hidden = true;
-            this.setLabel(e.target.value);
-            this.label.hidden = false;
-          } else {
-            this.destructor();
-          }
-        },
       })
     );
     if (label === null) {
