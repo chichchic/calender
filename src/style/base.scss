@@ -13,11 +13,18 @@ body {
 
 input {
   outline: none;
+  &[type="checkbox"] {
+    cursor: pointer;
+  }
 }
 
 hr {
   border: none;
   border-top: 1px solid white;
+}
+
+button {
+  cursor: pointer;
 }
 
 li,
