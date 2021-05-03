@@ -9,9 +9,11 @@ const DateBox = {
     return content;
   },
   render: function () {
-    const list = this.list.reduce((acc, cur) => {
-      return acc + `<li>${cur}</li>`;
-    }, "<ul>");
+    let list = "<ul>";
+    for (let index = 0; index < 3 && index < this.list.length; index++) {
+      list += `<li>${this.list[index]}</li>`;
+    }
+    list += "</ul>";
     this.content.innerHTML =
       `
     <h3 class="date">
@@ -19,6 +21,12 @@ const DateBox = {
     </h3>` +
       list +
       "</ul>";
+    if (this.list.length > 3) {
+      const more = document.createElement("p");
+      more.className = "more";
+      more.innerText = `${this.list.length - 3} more...`;
+      this.content.appendChild(more);
+    }
   },
 };
 

@@ -23,6 +23,12 @@
       margin-bottom: 8px;
     }
   }
+  & .more {
+    position: absolute;
+    bottom: 5px;
+    left: 15px;
+    user-select: none;
+  }
   &:last-child {
     border-right: rgb(64, 64, 64) 1px solid;
   }

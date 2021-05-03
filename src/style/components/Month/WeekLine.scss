@@ -1,0 +1,7 @@
+.week-line {
+  display: flex;
+  border-top: rgb(64, 64, 64) 1px solid;
+  &:last-child {
+    border-bottom: rgb(64, 64, 64) 1px solid;
+  }
+}
