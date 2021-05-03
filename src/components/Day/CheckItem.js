@@ -2,26 +2,9 @@ const checkItem = {
   constructor: function ({ label }) {
     this.item = document.createElement("li");
     this.item.className = "check-item";
-    this.item.addEventListener("click", (e) => {
-      const { target } = e;
-      if (target.tagName != "INPUT") {
-        this.label.hidden = true;
-        this.input.hidden = false;
-        this.input.focus();
-      }
-    });
+    this.item.addEventListener("click", this._itemClick.bind(this));
     this.checkbox = document.createElement("input");
-    this.checkbox.addEventListener(
-      "input",
-      (e) => {
-        if (e.target.checked) {
-          this.label.classList.add("checked-item");
-        } else {
-          this.label.classList.remove("checked-item");
-        }
-      },
-      false
-    );
+    this.checkbox.addEventListener("input", this._checkboxInput.bind(this));
     this.checkbox.className = "checkbox";
     this.checkbox.type = "checkbox";
     this.item.appendChild(this.checkbox);
@@ -29,35 +12,15 @@ const checkItem = {
     this.item.appendChild(this.itemLabel);
     this.label = document.createElement("label");
     this.input = document.createElement("input");
-    this.input.addEventListener("blur", (e) => {
-      if (e.target.value) {
-        this.input.hidden = true;
-        this.setLabel(e.target.value);
-        this.label.hidden = false;
-      } else {
-        this.destructor();
-      }
-    });
-    this.input.addEventListener("keydown", (e) => {
-      if (e.key === "Enter") {
-        this.input.blur();
-      }
-    });
+    this.input.addEventListener("blur", this._inputBlur.bind(this));
+    this.input.addEventListener("keydown", this._inputEnter.bind(this));
     this.itemLabel.appendChild(this.label);
     this.itemLabel.appendChild(this.input);
-    this.item.classList.add("draggable");
-    this.item.draggable = true;
-    this.item.addEventListener("dragstart", () => {
-      this.item.classList.add("dragging");
-    });
-    this.item.addEventListener("dragend", () => {
-      this.item.classList.remove("dragging");
-    });
     if (label === null) {
-      this.label.hidden = true;
+      this._toggleEdit(true);
     } else {
-      this.input.hidden = true;
-      this.setLabel(label);
+      this._toggleEdit(false);
+      this._setLabel(label);
       this.input.value = label;
     }
     return this.item;
@@ -65,10 +28,43 @@ const checkItem = {
   focus: function () {
     this.input.focus();
   },
-  setLabel: function (label) {
+  _toggleEdit: function (status) {
+    this.label.hidden = status;
+    this.input.hidden = !status;
+    if (status) {
+      this.focus();
+    }
+  },
+  _itemClick: function (e) {
+    const { target } = e;
+    if (target.tagName != "INPUT") {
+      this._toggleEdit(true);
+    }
+  },
+  _checkboxInput: function (e) {
+    if (e.target.checked) {
+      this.label.classList.add("checked-item");
+    } else {
+      this.label.classList.remove("checked-item");
+    }
+  },
+  _inputBlur: function (e) {
+    if (e.target.value) {
+      this._setLabel(e.target.value);
+      this._toggleEdit(false);
+    } else {
+      this._destructor();
+    }
+  },
+  _inputEnter: function (e) {
+    if (e.key === "Enter") {
+      this.input.blur();
+    }
+  },
+  _setLabel: function (label) {
     this.label.innerText = label;
   },
-  destructor: function () {
+  _destructor: function () {
     this.item.remove();
   },
 };

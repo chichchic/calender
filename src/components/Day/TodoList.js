@@ -11,7 +11,7 @@ const TodoList = {
     this.addButton = document.createElement("button");
     this.addButton.className = "add-button";
     this.addButton.innerText = "+";
-    this.addButton.addEventListener("click", () => {
+    this.addButton.addEventListener("click", (e) => {
       this.addItem();
     });
     this.content.appendChild(this.addButton);
@@ -36,11 +36,18 @@ const TodoList = {
   },
   addItem: function (label = null) {
     const checkItem = Object.create(CheckItem);
-    this.list.appendChild(
-      checkItem.constructor({
-        label,
-      })
-    );
+    const checkItemInstance = checkItem.constructor({
+      label,
+    });
+    checkItemInstance.classList.add("draggable");
+    checkItemInstance.draggable = true;
+    checkItemInstance.addEventListener("dragstart", () => {
+      checkItemInstance.classList.add("dragging");
+    });
+    checkItemInstance.addEventListener("dragend", () => {
+      checkItemInstance.classList.remove("dragging");
+    });
+    this.list.appendChild(checkItemInstance);
     if (label === null) {
       checkItem.focus();
     }
