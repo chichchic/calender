@@ -1,7 +1,9 @@
 .todo-list {
-  width: 300px;
+  max-width: 1250px;
+  width: 50%;
   border: 1px solid #fff;
   padding: 12px 12px 0;
+  margin: 0 auto;
   position: relative;
   & h1 {
     margin-bottom: 10px;
