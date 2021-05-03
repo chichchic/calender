@@ -1,7 +1,9 @@
 const checkItem = {
   _create: function () {
     this.item = document.createElement("li");
+    this.item.className = "check-item";
     this.checkbox = document.createElement("input");
+    this.checkbox.className = "checkbox";
     this.checkbox.type = "checkbox";
     this.item.appendChild(this.checkbox);
     this.itemLabel = document.createElement("span");

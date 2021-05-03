@@ -3,6 +3,9 @@
   border: 1px solid #fff;
   padding: 12px 12px 0;
   position: relative;
+  & h1 {
+    margin-bottom: 10px;
+  }
   & ul {
     padding-bottom: 12px;
   }
