@@ -9,4 +9,8 @@ const urlParser = function () {
       return acc;
     }, {});
 };
-export { urlParser };
+const getName = function () {
+  const { hash } = window.location;
+  return hash.split(/[?|&]/)[0].replace(/[#|/]/g, "");
+};
+export { urlParser, getName };

@@ -1,5 +1,6 @@
 import router from "./router";
 import routerObject from "./router";
+import { urlParser, getName } from "./fixture/url-parser";
 
 import "./style/index.scss";
 
@@ -25,7 +26,12 @@ layout.appendChild(main);
 
 const roueter = Object.create(routerObject);
 router.constructor({ target: main });
-router.push({ name: "month" });
+window.addEventListener("hashchange", (e) => {
+  const name = getName();
+  const params = urlParser();
+  router.push({ name, params });
+});
+router.push({ name: "month", params: { year: 2021 } });
 
 nav.querySelector(".calender-type").addEventListener("click", (e) => {
   if (e.target.dataset.route) {
