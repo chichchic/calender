@@ -1,3 +1,5 @@
+import { coverDateString } from "../../fixture/caleder";
+
 const MonthCalender = {
   constructor: function ({ month, weekInfo }) {
     const monthName = [
@@ -15,6 +17,13 @@ const MonthCalender = {
       "November",
       "December",
     ];
+    const today = new Date();
+    const todayDate = coverDateString(
+      today.getFullYear(),
+      today.getMonth(),
+      today.getDate()
+    );
+    console.log(todayDate);
     this.article = document.createElement("article");
     this.article.className = "month-calender";
     this.article.innerHTML = weekInfo.reduce(
@@ -24,9 +33,9 @@ const MonthCalender = {
           (week.reduce((acc, { date, isCurrentMonth }, index) => {
             return (
               acc +
-              `<span class="${isCurrentMonth ? "currentMonth" : ""}">${Number(
-                date.slice(date.length - 2, date.length)
-              )}</span>`
+              `<span class="${isCurrentMonth ? "currentMonth" : ""} ${
+                todayDate === date ? "today" : ""
+              }">${Number(date.slice(date.length - 2, date.length))}</span>`
             );
           }, '<div class="week">') +
             "</div>")

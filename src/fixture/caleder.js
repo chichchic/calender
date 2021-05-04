@@ -70,13 +70,13 @@ const _getWeekLine = function ({
   for (; offset > 0; --offset) {
     output.push({
       isCurrentMonth: false,
-      date: _coverDateString(year, month - 1, preMonthEnd - offset + 1),
+      date: coverDateString(year, month - 1, preMonthEnd - offset + 1),
     });
   }
   for (; startDate <= endDate && startDate <= lastDate; ++startDate) {
     output.push({
       isCurrentMonth: true,
-      date: _coverDateString(year, month, startDate),
+      date: coverDateString(year, month, startDate),
     });
   }
   for (
@@ -86,13 +86,13 @@ const _getWeekLine = function ({
   ) {
     output.push({
       isCurrentMonth: false,
-      date: _coverDateString(year, month + 1, overflowStart),
+      date: coverDateString(year, month + 1, overflowStart),
     });
   }
   return output;
 };
 
-const _coverDateString = function (year, month, date) {
+const coverDateString = function (year, month, date) {
   if (month === 0) {
     --year;
     month = 12;
@@ -112,4 +112,4 @@ const _convertTwoLetter = function (number) {
   return number;
 };
 
-export { getCalender };
+export { getCalender, coverDateString };
