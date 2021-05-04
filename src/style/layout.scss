@@ -24,18 +24,22 @@
       }
     }
     & .calender-type {
-      display: inline;
+      display: flex;
       height: 20px;
       color: rgb(106, 110, 116);
       border: 1px solid rgb(68, 72, 78);
       border-radius: 5px;
-      padding: 0 5px;
+      & .selected {
+        color: white;
+      }
       & button {
+        width: 60px;
         color: inherit;
         background-color: transparent;
         border: none;
+        text-align: center;
+        padding: 0 5px;
         &:not(:last-child) {
-          padding-right: 5px;
           border-right: 1px solid rgb(68, 72, 78);
         }
       }

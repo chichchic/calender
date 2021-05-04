@@ -14,7 +14,7 @@ nav.className = "top-nav";
 nav.innerHTML = `
 <button class="add-calender">+</button>
   <div class="calender-type">
-    <button data-route="/day">Day</button>
+    <button data-route="/day" class="selected">Day</button>
     <button data-route="/month">Month</button>
     <button data-route="/year">Year</button>
   </div>
@@ -29,6 +29,8 @@ router.push({ path: "/" });
 
 nav.querySelector(".calender-type").addEventListener("click", (e) => {
   if (e.target.dataset.route) {
+    nav.querySelector(".selected").classList.remove("selected");
+    e.target.className = "selected";
     router.push({ path: e.target.dataset.route });
   }
 });
