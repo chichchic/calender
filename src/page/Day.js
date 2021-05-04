@@ -15,7 +15,7 @@ const Day = {
     this.view.className = "day-view";
     this.date = document.createElement("h1");
     this.date.className = "date";
-    this.date.innerText = `${year} ${monthName[month]} ${date}`;
+    this.date.innerText = `${monthName[month]} ${date} ${year}`;
     this.view.appendChild(this.date);
     const todoList = Object.create(TodoList).constructor({
       className: "todo-list",
