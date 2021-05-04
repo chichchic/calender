@@ -8,7 +8,9 @@
   "scripts": {
     "build": "webpack --progress",
     "start": "webpack serve",
-    "dev": "webpack -w"
+    "dev": "webpack -w",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {},
   "devDependencies": {
