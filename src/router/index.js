@@ -26,7 +26,7 @@ const router = {
     let paramStr = ``;
     for (const param in params) {
       const prefix = paramStr.length ? "&" : "?";
-      paramStr += `${prefix}${param}:${params[param]}`;
+      paramStr += `${prefix}${param}=${params[param]}`;
     }
     const routePath = routes.find((route) => route.name === name).path;
     window.history.pushState(
