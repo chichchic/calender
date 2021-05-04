@@ -4,6 +4,7 @@
   "repository": "https://github.com/chichchic/calender.git",
   "author": "chicichich <pch6789@naver.com>",
   "license": "MIT",
+  "homepage": "https://chichchic.github.io/calender/",
   "private": true,
   "scripts": {
     "build": "webpack --progress",
