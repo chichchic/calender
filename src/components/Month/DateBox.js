@@ -1,8 +1,9 @@
 const DateBox = {
-  constructor: function ({ date, list = [] }) {
+  constructor: function ({ isCurrentMonth, fulldate, date, list = [] }) {
     const content = document.createElement("article");
+    content.dataset.date = fulldate;
     this.content = content;
-    this.content.className = "date-box";
+    this.content.className = `date-box ${isCurrentMonth ? "current" : ""}`;
     this.list = list;
     this.date = date;
     this.render();

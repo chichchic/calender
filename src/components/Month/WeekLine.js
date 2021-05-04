@@ -1,7 +1,8 @@
 import DateBox from "./DateBox";
 
 const WeekLine = {
-  constructor: function ({ weekStart }) {
+  constructor: function ({ weekStart, weekInfo }) {
+    this.weekInfo = weekInfo;
     this.content = document.createElement("article");
     this.content.className = "week-line";
     this.weekStart = weekStart;
@@ -9,14 +10,16 @@ const WeekLine = {
     return this.content;
   },
   render: function () {
-    for (let date = this.weekStart; date < this.weekStart + 7; date++) {
+    this.weekInfo.forEach(({ isCurrentMonth, date }) => {
       this.content.appendChild(
         Object.create(DateBox).constructor({
-          date,
+          isCurrentMonth,
+          fulldate: date,
+          date: Number(date.slice(date.length - 2)),
           list: ["할일 1", "할일 2", "할일 2", "할일 2", "할일 2", "할일 2"],
         })
       );
-    }
+    });
   },
 };
 
