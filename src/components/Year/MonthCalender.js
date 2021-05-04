@@ -1,22 +1,7 @@
-import { coverDateString } from "../../fixture/caleder";
+import { monthName, coverDateString } from "../../fixture/caleder";
 
 const MonthCalender = {
   constructor: function ({ month, weekInfo }) {
-    const monthName = [
-      "",
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ];
     const today = new Date();
     const todayDate = coverDateString(
       today.getFullYear(),

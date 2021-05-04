@@ -1,3 +1,19 @@
+const monthName = [
+  "",
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+
 const _getFirstDay = function (year) {
   //sun - 0
   const leapYearCount =
@@ -112,4 +128,4 @@ const _convertTwoLetter = function (number) {
   return number;
 };
 
-export { getCalender, coverDateString };
+export { monthName, getCalender, coverDateString };
