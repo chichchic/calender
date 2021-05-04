@@ -4,13 +4,15 @@ const router = {
   constructor: function ({ target }) {
     this.target = target;
   },
-  _render: function () {
+  _render: function (name) {
     this.target.innerHTML = "";
     const currentPath = this._hashParsing(window.location.hash);
     const currentComponent = routes.find(({ path }) => path === currentPath)
       .component;
     const currentInstance = Object.create(currentComponent).constructor();
     currentComponent.router = this;
+    document.querySelector(".selected")?.classList.remove("selected");
+    document.querySelector(`.nav-${name}`)?.classList.add("selected");
     this.target.appendChild(currentInstance);
   },
   _hashParsing: function (hash) {
@@ -20,22 +22,19 @@ const router = {
     }
     return hash.substring(1, paramIndex);
   },
-  push: function ({ name, path, params }) {
+  push: function ({ name, params }) {
     let paramStr = ``;
-    let routePath = path;
     for (const param in params) {
       const prefix = paramStr.length ? "&" : "?";
       paramStr += `${prefix}${param}:${params[param]}`;
     }
-    if (name) {
-      routePath = routes.find((route) => route.name === name).path;
-    }
+    const routePath = routes.find((route) => route.name === name).path;
     window.history.pushState(
       {},
-      path,
+      name,
       window.location.origin + `#${routePath}${paramStr}`
     );
-    this._render();
+    this._render(name);
   },
 };
 

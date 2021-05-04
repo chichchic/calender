@@ -14,9 +14,9 @@ nav.className = "top-nav";
 nav.innerHTML = `
 <button class="add-calender">+</button>
   <div class="calender-type">
-    <button data-route="/day" class="selected">Day</button>
-    <button data-route="/month">Month</button>
-    <button data-route="/year">Year</button>
+    <button data-route="date" class="nav-date">Day</button>
+    <button data-route="month" class="nav-month">Month</button>
+    <button data-route="year" class="nav-year">Year</button>
   </div>
 <input class="search-box" placeholder="search"/>
 `;
@@ -25,12 +25,10 @@ layout.appendChild(main);
 
 const roueter = Object.create(routerObject);
 router.constructor({ target: main });
-router.push({ path: "/" });
+router.push({ name: "month" });
 
 nav.querySelector(".calender-type").addEventListener("click", (e) => {
   if (e.target.dataset.route) {
-    nav.querySelector(".selected").classList.remove("selected");
-    e.target.className = "selected";
-    router.push({ path: e.target.dataset.route });
+    router.push({ name: e.target.dataset.route });
   }
 });
