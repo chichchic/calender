@@ -1,8 +1,11 @@
 import MonthCalender from "../components/Year/MonthCalender";
 import { getCalender } from "../fixture/caleder";
+import { urlParser } from "../fixture/url-parser";
 
 const Year = {
   constructor: function () {
+    const params = urlParser();
+    const { year = new Date().getFullYear() } = params;
     this.view = document.createElement("section");
     this.view.className = "year-view";
     const controller = document.createElement("div");
@@ -26,7 +29,7 @@ const Year = {
     this.calenderView = document.createElement("article");
     this.calenderView.className = "calender-view";
     this.view.appendChild(this.calenderView);
-    this._render(2021);
+    this._render(year);
     return this.view;
   },
   _render: function (year) {
