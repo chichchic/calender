@@ -21,7 +21,7 @@ const Month = {
     this.content.className = "content";
     currentCalender[month].forEach((weekInfo) => {
       this.content.appendChild(
-        Object.create(WeekLine).constructor({ weekStart: 2, weekInfo })
+        Object.create(WeekLine).constructor({ weekInfo })
       );
     });
     }

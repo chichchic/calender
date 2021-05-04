@@ -1,11 +1,10 @@
 import DateBox from "./DateBox";
 
 const WeekLine = {
-  constructor: function ({ weekStart, weekInfo }) {
+  constructor: function ({ weekInfo }) {
     this.weekInfo = weekInfo;
     this.content = document.createElement("article");
     this.content.className = "week-line";
-    this.weekStart = weekStart;
     this.render();
     return this.content;
   },
