@@ -1,0 +1,30 @@
+.todo-list {
+  max-width: 1250px;
+  width: 50%;
+  border: 1px solid #fff;
+  padding: 12px 12px 0;
+  margin: 0 auto;
+  position: relative;
+  & h1 {
+    margin-bottom: 10px;
+  }
+  & ul {
+    padding-bottom: 12px;
+  }
+  & li {
+    border-top: 1px solid #fff;
+    &:last-child {
+      border-bottom: 1px solid #fff;
+    }
+  }
+  & .add-button {
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    cursor: pointer;
+    font-size: 20px;
+    color: white;
+  }
+}

@@ -1,0 +1,60 @@
+.layout {
+  position: relative;
+  width: 100vw;
+  & .top-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 30px;
+    border-bottom: 1px #000 solid;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    background-color: rgb(33, 37, 43);
+    & .add-calender {
+      background-color: transparent;
+      color: rgb(95, 99, 105);
+      font-size: 20px;
+      padding: 0 10px;
+      border: none;
+      border-radius: 5px;
+      &:hover {
+        background-color: rgb(68, 72, 78);
+      }
+    }
+    & .calender-type {
+      display: flex;
+      height: 20px;
+      color: rgb(106, 110, 116);
+      border: 1px solid rgb(68, 72, 78);
+      border-radius: 5px;
+      & .selected {
+        color: white;
+      }
+      & button {
+        width: 60px;
+        color: inherit;
+        background-color: transparent;
+        border: none;
+        text-align: center;
+        padding: 0 5px;
+        &:not(:last-child) {
+          border-right: 1px solid rgb(68, 72, 78);
+        }
+      }
+    }
+    & .search-box {
+      padding: 0 5px;
+      background-color: inherit;
+      border: 1px solid rgb(68, 72, 78);
+      border-radius: 5px;
+    }
+  }
+  & > main {
+    margin-top: 30px;
+    height: calc(100vh - 30px);
+    padding: 10px 12px;
+  }
+}

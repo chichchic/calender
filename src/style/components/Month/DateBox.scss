@@ -1,0 +1,40 @@
+.date-box {
+  position: relative;
+  border-left: rgb(64, 64, 64) 1px solid;
+  padding: 20px 15px 10px;
+  width: 100%;
+  min-width: 30px;
+  min-height: 120px;
+  height: 100%;
+  opacity: 0.5;
+  &.current {
+    opacity: 1;
+  }
+  & .date {
+    position: absolute;
+    top: 5px;
+    right: 12px;
+  }
+  & ul {
+    height: 100%;
+    display: inline-block;
+    overflow: hidden;
+  }
+  & li {
+    &::before {
+      content: "- ";
+    }
+    &:not(:last-child) {
+      margin-bottom: 8px;
+    }
+  }
+  & .more {
+    position: absolute;
+    bottom: 5px;
+    left: 15px;
+    user-select: none;
+  }
+  &:last-child {
+    border-right: rgb(64, 64, 64) 1px solid;
+  }
+}
