@@ -1,5 +1,5 @@
-import Day from "./page/Day";
-import Month from "./page/Month";
+import router from "./router";
+import routerObject from "./router";
 
 import "./style/index.scss";
 
@@ -10,17 +10,25 @@ layout.className = "layout";
 const nav = document.createElement("nav");
 layout.appendChild(nav);
 nav.className = "top-nav";
+// <button>Week</button>
+// <button>Year</button>
 nav.innerHTML = `
 <button class="add-calender">+</button>
   <div class="calender-type">
-    <button>Day</button>
-    <button>Week</button>
-    <button>Month</button>
-    <button>Year</button>
+    <button data-route="/day">Day</button>
+    <button data-route="/month">Month</button>
   </div>
 <input class="search-box" placeholder="search"/>
 `;
-// layout.appendChild(
-//   Object.create(Day).constructor({ date: new Date().toDateString() })
-// );
-layout.appendChild(Object.create(Month).constructor());
+const main = document.createElement("main");
+layout.appendChild(main);
+
+const roueter = Object.create(routerObject);
+router.constructor({ target: main });
+router.push({ path: "/" });
+
+nav.querySelector(".calender-type").addEventListener("click", (e) => {
+  if (e.target.dataset.route) {
+    router.historyRouterPush({ path: e.target.dataset.route });
+  }
+});
