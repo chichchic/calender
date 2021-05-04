@@ -11,12 +11,12 @@ const nav = document.createElement("nav");
 layout.appendChild(nav);
 nav.className = "top-nav";
 // <button>Week</button>
-// <button>Year</button>
 nav.innerHTML = `
 <button class="add-calender">+</button>
   <div class="calender-type">
     <button data-route="/day">Day</button>
     <button data-route="/month">Month</button>
+    <button data-route="/year">Year</button>
   </div>
 <input class="search-box" placeholder="search"/>
 `;
@@ -29,6 +29,6 @@ router.push({ path: "/" });
 
 nav.querySelector(".calender-type").addEventListener("click", (e) => {
   if (e.target.dataset.route) {
-    router.historyRouterPush({ path: e.target.dataset.route });
+    router.push({ path: e.target.dataset.route });
   }
 });
