@@ -24,7 +24,19 @@ const Month = {
         Object.create(WeekLine).constructor({ weekInfo })
       );
     });
-    }
+    this.content.addEventListener("click", (e) => {
+      if (e.target.dataset.date) {
+        const date = e.target.dataset.date;
+        this.router.push({
+          name: "date",
+          params: {
+            year: Math.floor(date / 10000),
+            month: Math.floor((date % 10000) / 100),
+            date: date % 100,
+          },
+        });
+      }
+    });
     return this.view;
   },
 };

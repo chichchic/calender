@@ -31,7 +31,7 @@ window.addEventListener("hashchange", (e) => {
   const params = urlParser();
   router.push({ name, params });
 });
-router.push({ name: "month", params: { year: 2021 } });
+router.push({ name: "date" });
 
 nav.querySelector(".calender-type").addEventListener("click", (e) => {
   if (e.target.dataset.route) {
