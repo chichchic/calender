@@ -23,7 +23,6 @@ const MonthCalender = {
       today.getMonth(),
       today.getDate()
     );
-    console.log(todayDate);
     this.article = document.createElement("article");
     this.article.className = "month-calender";
     this.article.innerHTML = weekInfo.reduce(
