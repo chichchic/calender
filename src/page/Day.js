@@ -7,10 +7,9 @@ const Day = {
     const params = urlParser();
     const {
       year = new Date().getFullYear(),
-      month = new Date().getMonth(),
+      month = new Date().getMonth() + 1,
       date = new Date().getDate(),
     } = params;
-    console.log(year, month, date);
     this.view = document.createElement("section");
     this.view.className = "day-view";
     this.date = document.createElement("h1");

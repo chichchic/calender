@@ -7,7 +7,7 @@ const Month = {
     const params = urlParser();
     const {
       year = new Date().getFullYear(),
-      month = new Date().getMonth(),
+      month = new Date().getMonth() + 1,
     } = params;
     const currentCalender = getCalender(year);
     this.view = document.createElement("section");
