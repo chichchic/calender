@@ -45,6 +45,10 @@ const Year = {
         month,
         weekInfo: yearCalender[month],
       });
+      MonthInstance.addEventListener("click", (e) => {
+        this.router.push({ name: "month", params: { year: this.year, month } });
+      });
+
       this.calenderView.appendChild(MonthInstance);
     }
   },

@@ -1,6 +1,7 @@
 .year-view {
   height: 100%;
   .calender-view {
+    cursor: pointer;
     min-height: 100%;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
